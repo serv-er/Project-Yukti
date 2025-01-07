@@ -1,0 +1,127 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css');
+
+.login-container{
+    background: linear-gradient(to right, #B3A1D1, #D0E8F2);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, sans-serif;
+  }
+  
+  .login-form-container {
+    background: rgba(255, 255, 255, 0.9);  /* Semi-transparent white background for the login form */
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items:center ;
+    width: 300px;
+  }
+  .input-container{
+margin-top: 10px;
+  }
+  input {
+    width: 100%;
+    padding: 10px;
+    color: #B3A1D1;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  .login {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #6a82fb;  /* Soft blue for the button */
+    border: none;
+    color: white;
+    cursor: pointer;
+  }
+  
+  .login:hover {
+    background-color: #fc5c7d;  /* Pinkish hover effect for the button */
+  }
+  .forgot-password1{
+text-align: center;
+    font-size: 10px;
+    color: #B3A1D1;
+    text-decoration: none;
+   margin-top: 20px;
+  }
+  .forgot-password{
+
+    font-size: 10px;
+    color: #B3A1D1;
+    text-decoration: none;
+
+  }
+  .forgot-password:hover{
+   color: #6a82fb;
+   transform: scale(1.1);
+
+  }
+  .for{
+    text-align: right;
+  }
+  .login-text{
+    text-align: center;
+  
+  }
+  .label{
+    font-size: 10px;
+    color:grey;
+    text-decoration: none;
+    font-weight: bold;
+    margin-top: 20px;
+  }
+/* Container for social icons */
+/* Container for social icons */
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 15px; /* Spacing between icons */
+    margin-top: 20px;
+  }
+  
+  /* General styles for all icons */
+  .icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px; /* Smaller size */
+    height: 40px;
+    border-radius: 50%; /* Fully rounded icons */
+    font-size: 18px; /* Adjusted icon size */
+    text-decoration: none;
+    color: #fff; /* Default white icon color */
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effects */
+  }
+  
+  /* Background colors for respective brand icons */
+  .icon.google {
+    background-color: #db4437; /* Google */
+  }
+  
+  .icon.facebook {
+    background-color: #1877f2; /* Facebook */
+  }
+  
+  .icon.instagram {
+    background-color: #e4405f; /* Instagram */
+  }
+  
+  .icon.snapchat {
+    background-color: #fffc00; /* Snapchat */
+    color: #000; /* Black icon color for Snapchat contrast */
+  }
+  
+  /* Hover effects for all icons */
+  .icon:hover {
+    transform: scale(1.1); /* Slight zoom on hover */
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2); /* Deeper shadow on hover */
+  }
+  

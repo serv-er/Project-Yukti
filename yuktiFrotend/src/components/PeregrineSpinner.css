@@ -1,0 +1,79 @@
+/* Container */
+.spinner-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f5f5f5;
+  }
+  
+  /* SVG Spinner */
+  .peregrine-outline {
+    width: 150px;
+    height: 150px;
+    margin-bottom: 20px;
+    animation: spin 2s linear infinite;
+  }
+  
+  .peregrine-outline path {
+    stroke-linecap: round;
+    animation: dash 2s ease-in-out infinite, color-change 6s linear infinite;
+  }
+  
+  /* Text Animation */
+  .peregrine-text {
+    font-family: "Arial", sans-serif;
+    font-size: 24px;
+    color: #0077ff;
+    opacity: 0;
+    animation: fade-in 2s ease-in-out 1.5s forwards;
+  }
+  
+  /* Animations */
+  
+  /* Circular drawing of the falcon outline */
+  @keyframes dash {
+    from {
+      stroke-dashoffset: 600;
+    }
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+  
+  /* Background rotation (optional) */
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+  /* Text fade-in effect */
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Optional color-changing animation for the outline */
+  @keyframes color-change {
+    0% {
+      stroke: #0077ff;
+    }
+    50% {
+      stroke: #00c853;
+    }
+    100% {
+      stroke: #0077ff;
+    }
+  }
+  

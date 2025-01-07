@@ -1,0 +1,145 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+/* Navbar container */
+
+.App{
+  /*background: linear-gradient(135deg, #fdfbfb, #ebedee);*/
+  background-color:  #e3f6ff;
+  background-size: cover;
+ 
+}
+.navbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  /* Centers items horizontally */
+/* Centers items vertically */
+  height: 60px; /* Navbar height */
+  background-color: #f8f9fa; /* Light background color */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow */
+  position: sticky; /* Makes navbar sticky */
+  top: 0; /* Sticks to the top */
+  z-index: 1000; /* Ensures it's above other elements */
+  padding: 0 20px;
+  padding-right: 100px;
+  /* Adds padding for content */
+}
+
+/* Remove bullet points and style links */
+.nav-links {
+  list-style-type: none; /* Removes bullet points */
+  display: flex;
+  justify-content: center; /* Aligns items horizontally */
+  gap: 30px; /* Adds spacing between items */
+  padding: 0; /* Removes default padding */
+  margin-left: 40px; 
+  text-align: center; /* Removes default margin */
+}
+
+/* Style for links */
+.nav-link {
+  text-decoration: none; /* Removes underline */
+  color: #333; /* Default text color */
+}
+
+.nav-link:hover {
+  color: #007bff; /* Change color on hover */
+}
+
+/* Style for list items */
+.nav-item {
+  font-size: 18px;
+  cursor: pointer; /* Makes it clear that it's clickable */
+  transition: color 0.3s ease; /* Smooth color transition */
+}
+
+.hero-section{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.logo-img{
+  height: 50px;
+  margin-left: 80px;
+}
+.headline{
+  
+    font-weight: bold;
+    font-size: 30px;
+    font-family: "Roboto";
+}
+.sub-headline{
+  color: black;
+  font-family: "Roboto";
+}
+
+.header-container {
+  position: relative; /* Ensures overlay and text are positioned correctly */
+  background-image: url("./assets/Hero.jpg");
+  background-size: cover;
+  background-position: center;
+  width: auto;
+  height: 60vh;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+  padding: 60px;
+  overflow: hidden; /* Ensures the blur effect stays within bounds */
+}
+
+/* Add a semi-transparent overlay */
+.header-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6); /* Dark overlay */
+  backdrop-filter: blur(10px); /* Adds a blur effect to the background */
+  z-index: 1; /* Ensures the overlay is above the image */
+}
+
+/* Content inside the header */
+.header-container > * {
+  position: relative;
+  z-index: 2;
+  color: #ffeeba; /* Text color */
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.4); /* Light glow effect */
+}
+
+.hero-button{
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin: 10px;
+}
+.hero-button:hover{
+  background-color: black;
+  color: aqua;
+  transform: scale(1.1);
+}
+.cta {
+  flex: 1; /* Push the signup button to the right */
+  text-align: right; /* Align the button to the right */
+}
+
+.cta-btn {
+  background-color: #007bff; /* Button color */
+  color: white; /* Text color */
+  text-decoration: none; /* Remove underline */
+  padding: 10px 20px; /* Add padding inside the button */
+  border-radius: 5px; /* Rounded corners */
+}
+
+.cta-btn:hover {
+  background-color: #0056b3; /* Darken button on hover */
+}
