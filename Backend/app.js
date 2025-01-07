@@ -5,7 +5,7 @@ import { User } from "./models/userSchema.js";
 import cors from "cors"
 import cookieParser from "cookie-parser"
 import { connection } from "./databaseConfig/connection.js"
-
+import opportunityRouter from "./routes/opportunityRouter.js"
 
 const app =express();
 dotenv.config();
@@ -20,6 +20,7 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 app.use("/api/v1/user",userRouter)
+app.use("/api/v1/opportunity",opportunityRouter)
 
 connection();
 User.deleteMany({ emailDomain: null })

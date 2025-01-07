@@ -5,7 +5,9 @@ import Navbar from "./components/Navbar";
 import  Login from "./components/Login.jsx";
 import Home from "./pages/Home.jsx";
 import "./App.css"; // Styles for the app
-import Register from "./pages/Register.jsx";
+import Register from "./components/Register.jsx";
+import DashboardStudent from "./pages/DashboardStudent.jsx";
+import DashboardFaculty from "./pages/DashboardFaculty.jsx";
 
 const App = () => {
  
@@ -13,9 +15,12 @@ const App = () => {
     <>
      <Navbar/>
       <Routes>
+       
         <Route path="/" element={<Home/>}/>
         <Route path="/register" element={<Register/>}/>
         <Route path="/login" element={<Login/>}/>
+        <Route path="/dashboardStudent" element={<DashboardStudent/>}/>
+        <Route path="/dashboardFaculty" element={<DashboardFaculty/>}/>
         </Routes>     
     </>
   );

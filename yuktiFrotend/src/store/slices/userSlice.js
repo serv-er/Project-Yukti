@@ -1,17 +1,18 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios  from "axios"; 
 
-
+const initialState={
+    loading:false,
+    error:null,
+    isAuthenticated:false,
+    message:null,
+    token:null,
+    user:null,
+}
 
 const userSlice=createSlice({
     name:"user",
-    initialState:{
-        loading:false,
-        error:null,
-        isAuthenticated:false,
-        message:null,
-        user:null,
-    },
+    initialState,
     reducers:{
         registerRequest(state,action){
          state.loading=true,
@@ -24,6 +25,7 @@ const userSlice=createSlice({
           state.loading=false,
           state.error=null,
           state.isAuthenticated=true,
+          state.token = action.payload.token;
           state.message=action.payload.message,
           state.user=action.payload.user
         },
@@ -41,10 +43,17 @@ const userSlice=createSlice({
            state.message=null,
            state.user={}
         },
+        setUser(state, action) {
+            state.isAuthenticated = true;
+            state.token = action.payload.token;
+            state.user = action.payload.user;
+          }
+,          
         loginSuccess(state,action){
             state.loading=false,
             state.error=null,
             state.isAuthenticated=true,
+            state.token = action.payload.token;
             state.message=action.payload.message,
             state.user=action.payload.user
         },
@@ -54,6 +63,24 @@ const userSlice=createSlice({
          state.isAuthenticated=false,
          state.message=action.payload.message,
          state.user={}
+        },
+        logoutSuccess(state,action){
+            state.isAuthenticated=false;
+            state.user={},
+            state.error=null
+            localStorage.removeItem("user");
+            localStorage.removeItem("token");
+            localStorage.removeItem("role");
+        },
+        logoutFailed(state,action){
+            state.isAuthenticated=true;
+            state.user=state.user,
+            state.error=action.payload
+
+        },
+        setGoogleUser:(state,action)=>{
+         state.user=action.payload;
+         state.isAuthenticated=true;
         },
         clearAllErrors(state,action){
             state.error=null,
@@ -67,7 +94,7 @@ const userSlice=createSlice({
 export const register=(data)=>async(dispatch)=>{
           dispatch(userSlice.actions.registerRequest());
           try{
-            const response=await axios.post("http://localhost:7000/api/v1/register",data,{
+            const response=await axios.post("http://localhost:7000/api/v1/user/register",data,{
                 headers:{
                 
                     "Content-type":"application/json"
@@ -77,7 +104,7 @@ export const register=(data)=>async(dispatch)=>{
             dispatch(userSlice.actions.registerSuccess(response.data));
             dispatch(userSlice.actions.clearAllErrors()); 
         }catch(error){
-            dispatch(userSlice.actions.registerFailed(error.response.data.message));
+            dispatch(userSlice.actions.registerFailed(error.response.message));
           }
 }
 export const login=(data)=>async(dispatch)=>{
@@ -97,7 +124,24 @@ export const login=(data)=>async(dispatch)=>{
         dispatch(userSlice.actions.loginFailed(error.response.message));
      }
 }
+
+export const logout=()=>async(dispatch)=>{
+    try{
+        const response=await axios.get("http://localhost:7000/api/v1/user/logout",{
+            withCredentials:true,
+        }
+    )
+    dispatch(userSlice.actions.logoutSuccess())
+    dispatch(userSlice.actions.clearAllErrors())
+    }
+    catch(error){
+     dispatch(userSlice.actions.logoutFailed(error.response.message))
+    }
+}
+
 export const clearAllUserErrors=()=>(dispatch)=>{
     dispatch(userSlice.actions.clearAllErrors())
 }
+
+export const {setGoogleUser}=userSlice.actions;
 export default userSlice.reducer

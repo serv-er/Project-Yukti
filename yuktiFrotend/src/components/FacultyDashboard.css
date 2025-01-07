@@ -1,0 +1,71 @@
+.dashboard-container {
+    font-family: 'Arial, sans-serif';
+    padding: 20px;
+    background-color: #f4f7fc;
+    color: #333;
+  }
+  
+  .dashboard-title {
+    text-align: center;
+    font-size: 2.5rem;
+    color: #0077ff;
+    margin-bottom: 20px;
+  }
+  
+  .dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+  }
+  
+  .dashboard-item {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    animation: fadeIn 0.8s ease-in-out;
+  }
+  
+  .section-title {
+    text-align: center;
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+  }
+  
+  .globe-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 300px;
+  }
+  
+  .stats-container ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .stats-container li {
+    margin: 10px 0;
+  }
+  
+  a {
+    color: #0077ff;
+    text-decoration: none;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Animations */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  

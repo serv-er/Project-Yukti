@@ -6,15 +6,15 @@
 
 .App{
   /*background: linear-gradient(135deg, #fdfbfb, #ebedee);*/
-  background-color:  #e3f6ff;
+ /* background-color:  #e3f6ff; */
   background-size: cover;
  
 }
 .navbar {
-  display: flex;
+ display: flex;
   flex-direction: row;
   justify-content: space-around;
-  /* Centers items horizontally */
+  /*Centers items horizontally */
 /* Centers items vertically */
   height: 60px; /* Navbar height */
   background-color: #f8f9fa; /* Light background color */
@@ -22,9 +22,14 @@
   position: sticky; /* Makes navbar sticky */
   top: 0; /* Sticks to the top */
   z-index: 1000; /* Ensures it's above other elements */
-  padding: 0 20px;
+ /* padding: 0 20px;
   padding-right: 100px;
   /* Adds padding for content */
+}
+.nav-container {
+  margin-left: auto;
+  margin-right: auto;
+  width: max-content; /* Ensures it only takes the space it needs */
 }
 
 /* Remove bullet points and style links */
@@ -34,7 +39,7 @@
   justify-content: center; /* Aligns items horizontally */
   gap: 30px; /* Adds spacing between items */
   padding: 0; /* Removes default padding */
-  margin-left: 40px; 
+ 
   text-align: center; /* Removes default margin */
 }
 
@@ -78,7 +83,6 @@
 
 .header-container {
   position: relative; /* Ensures overlay and text are positioned correctly */
-  background-image: url("./assets/Hero.jpg");
   background-size: cover;
   background-position: center;
   width: auto;
@@ -90,6 +94,7 @@
   padding: 60px;
   overflow: hidden; /* Ensures the blur effect stays within bounds */
 }
+
 
 /* Add a semi-transparent overlay */
 .header-container::before {
@@ -141,5 +146,29 @@
 }
 
 .cta-btn:hover {
-  background-color: #0056b3; /* Darken button on hover */
+  background-color: #07101b; /* Darken button on hover */
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  scrollbar-width: none;    /* Firefox */
+}
+
+
+
+@keyframes fadeOutBackground {
+  0% {
+    background-color: rgba(0, 110, 255); /* Change this to your preferred color */
+  }
+  100% {
+    background-color: rgba(255, 0, 0, 0); /* Fully transparent */
+  }
+}
+
+.animate-fadeOutBackground {
+  animation: fadeOutBackground 3s ease-out forwards;
 }

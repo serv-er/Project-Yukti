@@ -1,7 +1,7 @@
 import React, { useState,useEffect } from "react";
 import {useSelector,useDispatch} from "react-redux"
 import { useNavigate ,Link} from "react-router-dom";
-
+import OAuth from "./OAuth";
 import {toast} from "react-toastify"
 import "./Login.css";
 import { clearAllUserErrors,login } from "../store/slices/userSlice";
@@ -9,7 +9,7 @@ import { clearAllUserErrors,login } from "../store/slices/userSlice";
 const Login = () => {
     const [email,setEmail]=useState("")
     const [password,setPassword]=useState("")
-    const {loading,isAuthenticated,error,message}=useSelector((state)=>state.user)
+    const {loading,isAuthenticated,error,user}=useSelector((state)=>state.user)
    
     const dispatch=useDispatch()
     const navigateTo=useNavigate()
@@ -25,10 +25,32 @@ const Login = () => {
         toast.error(error)
         dispatch(clearAllUserErrors)
     }
-    if(isAuthenticated){
-        navigateTo("/");
+    if (isAuthenticated) {
+      // Save user data and token to localStorage
+      localStorage.setItem("token", user?.token); // Store token
+      localStorage.setItem("role", user?.role);   // Store user role
+      localStorage.setItem("user", JSON.stringify(user)); // Store full user data
+
+      // Navigate to the respective dashboard based on the user role
+      if (user?.role === "Student") {
+        navigateTo("/dashboardStudent");
+      } else if (user?.role === "Faculty") {
+        navigateTo("/dashboardFaculty");
+      }
     }
-  },[dispatch,error,loading,isAuthenticated])
+  },[dispatch, error, loading, isAuthenticated, user, navigateTo])
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    const role = localStorage.getItem("role");
+    const user = JSON.parse(localStorage.getItem("user"));
+
+    if (token && role && user) {
+      // Restore authentication state if token exists
+      dispatch({ type: "user/setUser", payload: { token, role, user } });
+      navigateTo(role === "Student" ? "/dashboardStudent" : "/dashboardFaculty");
+    }
+  }, [dispatch, navigateTo]);
 
   return (
     <div className="login-container">
@@ -55,12 +77,7 @@ const Login = () => {
  </p>
           <button className="login" type="submit">Sign In</button>
           <p className="forgot-password1">or Signup Using</p>
-          <div class="social-icons">
-  <a href="#" class="icon google"><i class="fa-brands fa-google-plus-g"></i></a>
-  <a href="#" class="icon facebook"><i class="fa-brands fa-facebook-f"></i></a>
-  <a href="#" class="icon instagram"><i class="fa-brands fa-instagram"></i></a>
-  <a href="#" class="icon snapchat"><i class="fa-brands fa-snapchat"></i></a>
-</div>
+<OAuth/>
 <p className="forgot-password1">or Signup Using</p>
           <p className="forgot-password1">
           <Link to={"/register"} className="forgot-password">Sign Up</Link>
