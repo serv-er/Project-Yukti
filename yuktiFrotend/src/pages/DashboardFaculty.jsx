@@ -5,6 +5,7 @@ import DepartmentalForm from "../components/DepartmentalProject";
 import ResearchOpportunityForm from "../components/ResearchOpportunityForm";
 import HackathonCard from "../components/HackathonCard";
 import FacultyDashboard from "../components/FacultyDashboard";
+import PostedOpportunities from "../components/PostedOpportunities";
 import { useSelector } from "react-redux";
 
 const DashboardFaculty = () => {
@@ -27,7 +28,7 @@ const DashboardFaculty = () => {
       case "Departmental":
         return <DepartmentalForm />
       case "My Opportunities":
-        return <div>Here is your posted opportunities</div>
+        return <PostedOpportunities />;
       case "Settings":
         return <div>Settings Section</div>;
       case "Chat Room":

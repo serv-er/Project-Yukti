@@ -97,7 +97,7 @@ export const register=(data)=>async(dispatch)=>{
             const response=await axios.post("http://localhost:7000/api/v1/user/register",data,{
                 headers:{
                 
-                    "Content-type":"application/json"
+                    "Content-Type":"application/json"
                 },
                 withCredentials:true
             });

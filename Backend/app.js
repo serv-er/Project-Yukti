@@ -1,16 +1,18 @@
-import express from "express"
-import dotenv from "dotenv"
-import userRouter from "./routes/UserRouter.js"
-import { User } from "./models/userSchema.js";
-import cors from "cors"
-import cookieParser from "cookie-parser"
-import { connection } from "./databaseConfig/connection.js"
-import opportunityRouter from "./routes/opportunityRouter.js"
+import express from "express";
+import dotenv from "dotenv";
+import cors from "cors";
+import cookieParser from "cookie-parser";
+import path from "path";
+import { fileURLToPath } from "url";
 
+import userRouter from "./routes/UserRouter.js";
+import opportunityRouter from "./routes/opportunityRouter.js";
+import { User } from "./models/userSchema.js";
+import { connection } from "./databaseConfig/connection.js";
 const app =express();
 dotenv.config();
 app.use(cors({
-    origin:[process.env.FRONTEND_URL],
+    origin:true,
     methods:["GET","POST","DELETE","PUT"],
     credentials:true,
 
@@ -30,5 +32,17 @@ User.deleteMany({ emailDomain: null })
 .catch((err) => {
   console.error("Error during cleanup:", err);
 });
+
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const buildPath = path.join(__dirname, "../client/build");
+
+app.use(express.static(buildPath));
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(buildPath, "index.html"));
+});
+
 
 export default app

@@ -1,31 +1,27 @@
-import React,{useEffect} from 'react'
+import React, { useEffect } from 'react';
 import logoImage from "../assets/logo1.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { logout } from "../store/slices/userSlice";
-import { useNavigate } from "react-router-dom";
+import { logout, clearAllUserErrors } from "../store/slices/userSlice";
+import { toast } from "react-toastify";
 
 const Navbar = () => {
-  const { isAuthenticated, user,error,loading } = useSelector((state) => state.user);
+  const { isAuthenticated, user, error } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const navigateTo = useNavigate();
 
   const handleLogout = () => {
     dispatch(logout());
-    
+    navigateTo("/"); // ✅ Navigate after logout only
   };
-  useEffect(()=>{
-    if(error){
+
+  useEffect(() => {
+    if (error) {
       toast.error(error);
-       dispatch(clearAllUserErrors());
+      dispatch(clearAllUserErrors());
     }
-    if(!isAuthenticated){
-      navigateTo("/");
-    }
+  }, [dispatch, error]);
 
-  },[dispatch,error,loading,isAuthenticated])
-
-  
   return (
     <nav className="navbar flex justify-between items-center p-3">
       <div className="logo">
