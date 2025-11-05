@@ -5,7 +5,7 @@ import cookieParser from "cookie-parser";
 import path from "path";
 import { fileURLToPath } from "url";
 
-import userRouter from "./routes/UserRouter.js";
+import userRouter from "./routes/userRouter.js";
 import opportunityRouter from "./routes/opportunityRouter.js";
 import { User } from "./models/userSchema.js";
 import { connection } from "./databaseConfig/connection.js";
